@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#5a3a26" />
+    <meta name="description" content="Run a cozy 3D neighborhood café. Make orders, welcome regulars, hire a team, and grow your little corner of the world." />
+    <title>Corner Cup Café — Neighborhood Stories</title>
+  </head>
+  <body>
+    <div id="main-ui" class="main-ui inactive">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <div id="level-badge" class="level-badge" title="Café level"><b id="level-num">1</b></div>
+          <div class="brand-copy"><strong id="cafe-title">Corner Cup Café</strong><div class="xp-track" title="Experience"><i id="xp-bar"></i></div><small id="xp-text">0 / 90 XP</small></div>
+        </div>
+        <div class="top-stats" aria-label="Café statistics">
+          <div class="stat-pill cash"><span aria-hidden="true">🪙</span><small>Cash</small><b id="cash-value">$230</b></div>
+          <div class="stat-pill hearts"><span aria-hidden="true">💗</span><small>Hearts</small><b id="hearts-value">3</b></div>
+          <div class="stat-pill"><span aria-hidden="true">☀️</span><small>Day</small><b id="day-value">1</b></div>
+          <div class="stat-pill"><span aria-hidden="true">⭐</span><small>Rep</small><b id="rep-value">1.0</b></div>
+          <div class="stat-pill"><span aria-hidden="true">🛎️</span><small>Served</small><b id="served-value">0</b></div>
+        </div>
+        <div class="top-actions">
+          <button id="mute-button" class="icon-button" type="button" aria-label="Mute sound effects">♫ <span>Sound</span></button>
+          <button id="help-button" class="icon-button" type="button" aria-label="Open café handbook">? <span>Help</span></button>
+          <button id="settings-button" class="icon-button" type="button" aria-label="Open settings">⚙ <span>Settings</span></button>
+        </div>
+      </header>
+
+      <div class="event-banner">
+        <span class="event-spark" aria-hidden="true">✦</span>
+        <div><b id="event-name">A bright, ordinary morning</b><small id="event-detail">A gentle start gives you time to learn the rhythm.</small></div>
+        <div class="stock-chip"><span aria-hidden="true">▦</span> Pantry <b id="pantry-count">67</b></div>
+      </div>
+
+      <aside class="orders-panel" aria-label="Guest orders">
+        <div class="panel-heading"><div><span class="eyebrow">AT THE COUNTER</span><h1>Guest tickets</h1></div><span id="all-guest-count" class="waiting-count">0 waiting</span></div>
+        <p id="shift-note" class="shift-note">Welcome to the neighborhood. Set up, then open the café.</p>
+        <div id="order-list" class="order-list" aria-live="polite"></div>
+      </aside>
+
+      <section class="active-ticket" aria-label="Selected order">
+        <div id="active-ticket">
+          <div class="ticket-empty"><div class="empty-cup">☕</div><b>Pick a ticket to get started</b><span>New guests and their orders will appear here.</span></div>
+        </div>
+      </section>
+
+      <aside id="quest-tracker" class="quest-tracker" aria-label="Today's goals"></aside>
+      <div id="combo-chip" class="combo-chip" aria-live="polite"></div>
+      <button id="chest-button" class="chest-button" type="button" aria-label="Playtime treat"><span class="chest-icon" aria-hidden="true">🎁</span><span class="chest-copy"><b id="chest-title">Treat basket</b><i class="chest-track"><u id="chest-bar"></u></i></span></button>
+      <div id="interaction-prompt" class="interaction-prompt" role="status" aria-live="polite"></div>
+      <div id="touch-controls" class="touch-controls" aria-label="Movement and interaction controls">
+        <div class="touch-pad" aria-label="Move your barista">
+          <button type="button" data-move="w" aria-label="Walk forward">↑</button>
+          <button type="button" data-move="a" aria-label="Walk left">←</button>
+          <span aria-hidden="true">MOVE</span>
+          <button type="button" data-move="d" aria-label="Walk right">→</button>
+          <button type="button" data-move="s" aria-label="Walk backward">↓</button>
+        </div>
+        <button id="touch-interact" class="touch-interact" type="button" aria-label="Interact with the nearby station or guest"><b>E</b><span>Interact</span></button>
+      </div>
+
+      <nav class="management-dock" aria-label="Café management">
+        <div class="dock-tabs">
+          <button class="manager-tab" data-tab="staff" type="button"><span>♙</span> Team <b id="staff-value">0</b></button>
+          <button class="manager-tab" data-tab="upgrades" type="button"><span>✧</span> Shop</button>
+          <button class="manager-tab" data-tab="supplies" type="button"><span>▦</span> Supplies</button>
+          <button class="manager-tab" data-tab="menu" type="button"><span>☷</span> Menu</button>
+          <button class="manager-tab" data-tab="decor" type="button"><span>🎨</span> Decorate</button>
+          <button class="manager-tab" data-tab="goals" type="button"><span>🏅</span> Goals <b id="goals-dot" class="dot"></b></button>
+          <button class="manager-tab" data-tab="rewards" type="button"><span>🎁</span> Rewards <b id="rewards-dot" class="dot"></b></button>
+        </div>
+        <div class="shift-dock">
+          <div class="shift-clock-wrap"><small>SHIFT</small><b id="shift-clock">CLOSED</b></div>
+          <button id="pause-button" class="quiet pause-button" type="button" disabled>Ⅱ Pause</button>
+          <button id="clean-button" class="clean-button" type="button" disabled title="Clean the tables to keep guests comfortable">🧽 Clean tables</button>
+          <button id="shift-button" class="primary shift-button" type="button" aria-label="Open the café for today"><span id="shift-button-label">Open today’s café</span><b aria-hidden="true">→</b></button>
+        </div>
+      </nav>
+    </div>
+
+    <section id="intro" class="intro-screen" aria-labelledby="intro-title">
+      <div class="intro-card">
+        <div class="intro-decoration" aria-hidden="true"><span>☕</span><i>✦</i><b>♡</b></div>
+        <div class="eyebrow">A LITTLE PLACE WITH A LOT OF HEART</div>
+        <div id="intro-progress" class="intro-progress"></div>
+        <h1 id="intro-title">A new day<br /><em>at the corner.</em></h1>
+        <p>A small shop, a warm cup, and a few neighbors about to become regulars. You’re the owner, barista, and friendly face behind the counter. Let’s get brewing.</p>
+        <label for="intro-name">What should we call your café?</label>
+        <input id="intro-name" maxlength="28" autocomplete="organization" value="Corner Cup Café" />
+        <button id="begin-game" class="primary begin-button" type="button" disabled>Open the doors <span aria-hidden="true">→</span></button>
+        <button id="intro-help" class="intro-help" type="button">How the first shift works</button>
+        <div id="loading-label" class="loading-label">Setting out the chairs and warming the espresso machine…</div>
+        <div id="asset-status" class="asset-status" role="status"></div>
+        <div class="intro-foot"><span>3D café management</span><span>Progress saves on this device</span></div>
+      </div>
+      <div class="intro-bottom">A cozy little game about good coffee and growing together.</div>
+    </section>
+
+    <div id="manager-panel" class="manager-backdrop" role="dialog" aria-modal="true" aria-labelledby="panel-title" aria-hidden="true">
+      <section class="manager-sheet">
+        <header class="sheet-head"><div><span class="eyebrow">YOUR CAFÉ, YOUR WAY</span><h2 id="panel-title">Café management</h2><p id="panel-subtitle"></p></div><button id="panel-close" class="close-button" type="button" aria-label="Close management panel">×</button></header>
+        <div id="panel-body" class="panel-body"></div>
+      </section>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
